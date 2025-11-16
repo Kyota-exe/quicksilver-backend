@@ -13,3 +13,6 @@ def project_detail(request, project_id):
     except Project.DoesNotExist:
         return JsonResponse({"detail": "Not found"}, status=404)
     return JsonResponse(project)
+
+def health(request):
+    return JsonResponse({"status": "ok"})
