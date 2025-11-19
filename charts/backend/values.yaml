@@ -1,0 +1,24 @@
+replicaCount: 1
+
+image:
+  repository: quicksilver-backend
+  tag: "dev"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8000
+
+env:
+  DJANGO_SECRET_KEY: "this-should-be-overrided"
+  DJANGO_ALLOWED_HOSTS: "*"
+  DB_NAME: "quicksilver"
+  DB_USER: "quicksilver"
+  DB_PASSWORD: "pass"
+  DB_PORT: "5432"
+
+postgres:
+  image: "postgres:18"
+  username: "quicksilver"
+  password: "quicksilver"
+  database: "quicksilver"
