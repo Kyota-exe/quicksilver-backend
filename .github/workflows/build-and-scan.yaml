@@ -24,6 +24,7 @@ jobs:
           severity: 'CRITICAL,HIGH'
           ignore-unfixed: true
           output: trivy-backend-report.txt
+          exit-code: '1'
 
       - name: Upload Trivy report
         uses: actions/upload-artifact@v4
