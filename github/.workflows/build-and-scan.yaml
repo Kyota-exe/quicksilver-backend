@@ -1,0 +1,25 @@
+name: Build and scan quicksilver-backend image
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  build-and-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build quicksilver-backend image
+        run: docker build -t quicksilver-backend:ci .
+
+      - name: Run Trivy image scan
+        uses: aquasecurity/trivy-action@0.33.1
+        with:
+          image-ref: quicksilver-backend:ci
+          severity: 'CRITICAL,HIGH'
+          ignore-unfixed: true
